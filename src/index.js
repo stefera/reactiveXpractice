@@ -1,5 +1,5 @@
 import Rx from "rxjs";
-import { Observable } from "rxjs";
+import { Observable, fromEvent } from "rxjs";
 
 const title = document.getElementById("title1");
 console.log(title);
@@ -9,12 +9,13 @@ resultArr.innerHTML = array;
 
 const button = document.getElementById("button");
 
-button.addEventListener("click", (event) => {
-  console.log(event, array);
-  array.push(array.length + 1);
-  resultArr.innerHTML = array;
-});
+// button.addEventListener("click", (event) => {
+//   console.log(event, array);
+//   array.push(array.length + 1);
+//   resultArr.innerHTML = array;
+// });
+Rx.Observable;
 
-Rx.Observable.fromEvent(button, "click").subscribe((event) =>
-  console.log(event.clientX)
-);
+fromEvent(button, "click")
+  .throttleTime(10000)
+  .subscribe((event) => console.log(event.clientX));
